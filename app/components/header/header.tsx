@@ -7,6 +7,7 @@ export default function Header() {
     <Flex
       borderBottom={"1px"}
       borderColor={"gray.400"}
+      bgColor={"blue.100"}
       width={"100%"}
       padding={"10px"}
       justifyContent={"center"}

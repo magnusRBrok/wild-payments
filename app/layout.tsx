@@ -21,12 +21,7 @@ export default function RootLayout({
     <html lang="en">
       <body>
         <Providers>
-          <Flex
-            bgColor={"gray.100"}
-            height={"100vh"}
-            direction={"column"}
-            alignItems={"center"}
-          >
+          <Flex direction={"column"} alignItems={"center"}>
             <Header />
             {children}
           </Flex>
