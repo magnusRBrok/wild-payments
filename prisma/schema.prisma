@@ -12,3 +12,28 @@ datasource db {
   provider = "postgresql"
   url      = env("DATABASE_URL")
 }
+
+model Payment {
+  id        Int      @id @default(autoincrement())
+  createdAt DateTime @default(now())
+  currency  String   @default("DKK") @db.VarChar(255)
+  amount    Int
+  finalized Boolean  @default(false)
+  company   Company? @relation(fields: [companyId], references: [id])
+  companyId Int?
+}
+
+model Company {
+  id       Int       @id @default(autoincrement())
+  crm      String
+  adress   String
+  payments Payment[]
+}
+
+model User {
+  id       Int     @id @default(autoincrement())
+  email    String  @unique
+  name     String?
+  password String
+  role     String
+}
