@@ -1,36 +1,23 @@
-This is a [Next.js](https://nextjs.org/) project bootstrapped with [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app).
+# Wild payments
 
-## Getting Started
+The first thing I do when approaching an assignment like this is to sketch out the domain. By doing this I get an initial understanding of what tables I will need and how they relate to each other.
 
-First, run the development server:
+Then I think about how I would structure the different pages of the webapp, so that I have an estimate of how many pages I need to support the requested features. After this initial planning/analyzing I then investigate how I want to structure my Tech stack, and which technologies fits the case best.
 
-```bash
-npm run dev
-# or
-yarn dev
-# or
-pnpm dev
-# or
-bun dev
-```
+## Next.js and NextAuth
 
-Open [http://localhost:3000](http://localhost:3000) with your browser to see the result.
+Next.js was used as the framework for my application and works as the foundation for my monolithic setup. I chose the monolithic setup because it allows me to hit the ground running, and not use too much time on setting up a dedicated backend API. I was instead able to use Next’s features for API routes and server-side components to handle my data fetching. For authentication I included the NextAuth library due to its seamless integration with Next.js as well as some easy-to-use authentication hooks for my react components.
 
-You can start editing the page by modifying `app/page.tsx`. The page auto-updates as you edit the file.
+## Prisma
 
-This project uses [`next/font`](https://nextjs.org/docs/basic-features/font-optimization) to automatically optimize and load Inter, a custom Google Font.
+To save some time on development I chose the lightweight ORM Prisma. This allowed me to simply define my Domain models in a “typescript like” look, and then have Prisma generate database migrations, and a typed Prisma-Client to use in my API endpoints.
 
-## Learn More
+## Alternatives for better scalability and stability
 
-To learn more about Next.js, take a look at the following resources:
+The obvious alternative to a monolithic setup is a more microservice focused one instead, and this would properly be a better solution. From this case we know that “payments” specifically will be under heavy load (100+ payments pr. second). Therefore, it would be much more advantageous to have a payment, and a customer API separated, so that we can ensure scalability and stability of the systems independently. This is because it is much easier to maintain and monitor a decentralized system rather than a huge centralized one. We can also more easily scale specific services and therefore save resources (CPU and RAM) for the entire system.
 
-- [Next.js Documentation](https://nextjs.org/docs) - learn about Next.js features and API.
-- [Learn Next.js](https://nextjs.org/learn) - an interactive Next.js tutorial.
+I would then have the Web app as its own independent system, and then communicate to a centralized API-gateway before reaching the microservices.
 
-You can check out [the Next.js GitHub repository](https://github.com/vercel/next.js/) - your feedback and contributions are welcome!
+## Conclusion
 
-## Deploy on Vercel
-
-The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
-
-Check out our [Next.js deployment documentation](https://nextjs.org/docs/deployment) for more details.
+My approach to the solution was based on solid frameworks which allowed me to quickly implement as many of the requested features as possible. Should this system be used at enterprise level I would have gone with a microservice setup instead due to its superior scalability and stability.
