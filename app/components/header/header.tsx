@@ -1,8 +1,10 @@
-"use client";
-import { Link } from "@chakra-ui/next-js";
-import { Box, Flex, Spacer } from "@chakra-ui/react";
+import { Box, Container, Flex, Spacer, Link } from "@chakra-ui/react";
+import Logout from "./logout";
+import { getServerSession } from "next-auth";
 
-export default function Header() {
+export default async function Header() {
+  const session = await getServerSession();
+
   return (
     <Flex
       borderBottom={"1px"}
@@ -10,25 +12,40 @@ export default function Header() {
       bgColor={"blue.100"}
       width={"100%"}
       padding={"10px"}
-      justifyContent={"center"}
       marginBottom={"30px"}
+      justifyContent={"center"}
     >
-      <Flex minWidth={"200px"}>
-        <Link
-          fontSize={"large"}
-          _hover={{ color: "blue.500" }}
-          href={"/payments"}
-        >
-          Payments
-        </Link>
+      <Flex width={"6xl"} justifyContent={"center"} flexDir={"row"}>
+        <></>
         <Spacer />
-        <Link
-          fontSize={"large"}
-          _hover={{ color: "blue.500" }}
-          href={"/customers"}
-        >
-          Customers
-        </Link>
+
+        <Flex minWidth={"200px"}>
+          <Link
+            fontSize={"large"}
+            _hover={{ color: "blue.500" }}
+            href={"/payments"}
+          >
+            Payments
+          </Link>
+          <Spacer />
+          <Link
+            fontSize={"large"}
+            _hover={{ color: "blue.500" }}
+            href={"/customers"}
+          >
+            Customers
+          </Link>
+        </Flex>
+        <Spacer />
+        <div>
+          {session?.user ? (
+            <Logout />
+          ) : (
+            <Link href="/login" color="blue.400" _hover={{ color: "blue.500" }}>
+              login
+            </Link>
+          )}
+        </div>
       </Flex>
     </Flex>
   );

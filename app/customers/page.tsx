@@ -1,7 +1,13 @@
-"use client";
-import { Button, Container, Text } from "@chakra-ui/react";
+"use server";
+import { Container, Text } from "@chakra-ui/react";
+import { getServerSession } from "next-auth";
+import { redirect } from "next/navigation";
 
-export default function page() {
+export default async function page() {
+  const session = await getServerSession();
+  if (session === null) {
+    redirect("/login");
+  }
   return (
     <Container
       borderRadius={"6px"}

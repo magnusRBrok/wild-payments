@@ -32,7 +32,7 @@ export default function PaymentsTable() {
 
   return (
     <TableContainer>
-      <Table size={"lg"} maxHeight={"6xl"} overflowY={"auto"} variant="striped">
+      <Table size={"lg"} maxHeight={"6xl"} overflowY={"auto"} variant="simple">
         <Thead>
           <Tr>
             <Th>ID</Th>
