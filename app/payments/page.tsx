@@ -20,7 +20,6 @@ export default async function page() {
       alignItems={"center"}
       overflowY={"auto"}
     >
-      <Text fontSize={"x-large"}>Payments Overview</Text>
       <PaymentsTable />
     </Container>
   );

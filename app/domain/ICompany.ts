@@ -1,4 +1,4 @@
-export interface ICompany {
+export interface ICustomer {
   id: number;
   name: string;
 }

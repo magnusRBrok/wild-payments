@@ -1,10 +1,11 @@
-import { ICompany } from "./ICompany";
+import { ICustomer } from "./ICompany";
 
 export interface IPayments {
+  payment: ICustomer | undefined;
   id: number;
   createdAt: string;
   currency?: string;
   amount?: number;
   finalized: Boolean;
-  company?: ICompany;
+  company: ICustomer;
 }
