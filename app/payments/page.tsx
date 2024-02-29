@@ -1,16 +1,17 @@
 "use client";
 import { Link } from "@chakra-ui/next-js";
-import { Button, Flex } from "@chakra-ui/react";
+import { Button, Container, Flex, Text } from "@chakra-ui/react";
 
 export default function page() {
   return (
-    <div>
-      Payments page
-      <Button>test</Button>
-      <Flex maxWidth={"200px"}>
-        <Link href={"/payments"}>Payments</Link>
-        <Link href={"/customers"}>Customers</Link>
-      </Flex>
-    </div>
+    <Container
+      borderRadius={"6px"}
+      bgColor={"gray.50"}
+      padding={"20px"}
+      size={"xl"}
+      alignItems={"center"}
+    >
+      <Text fontSize={"x-large"}>Payments Overview</Text>
+    </Container>
   );
 }

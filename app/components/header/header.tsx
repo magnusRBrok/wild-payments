@@ -4,7 +4,14 @@ import { Box, Flex, Spacer } from "@chakra-ui/react";
 
 export default function Header() {
   return (
-    <Flex width={"100%"} padding={"10px"} justifyContent={"center"}>
+    <Flex
+      borderBottom={"1px"}
+      borderColor={"gray.400"}
+      width={"100%"}
+      padding={"10px"}
+      justifyContent={"center"}
+      marginBottom={"30px"}
+    >
       <Flex minWidth={"200px"}>
         <Link
           fontSize={"large"}
